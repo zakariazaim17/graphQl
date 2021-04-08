@@ -1,9 +1,9 @@
 import animalSchema from "./animalSchema.js";
 import speciesSchema from "./speciesSchema.js";
-import categorySchema from "./category.js";
+import categorySchema from "./categorySchema.js";
 import pkg from "apollo-server-express";
-import userSchema from "./userSchema.js";
 const { gql } = pkg;
+
 const linkSchema = gql`
   type Query {
     _: Boolean
@@ -13,10 +13,4 @@ const linkSchema = gql`
   }
 `;
 
-export default [
-  linkSchema,
-  animalSchema,
-  speciesSchema,
-  categorySchema,
-  userSchema,
-];
+export default [linkSchema, animalSchema, speciesSchema, categorySchema];

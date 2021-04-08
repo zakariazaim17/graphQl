@@ -1,17 +1,4 @@
-import Species from "../model/species.js";
-
-const speciesData = [
-  {
-    id: "1",
-    speciesName: "Cat",
-    category: "1",
-  },
-  {
-    id: "2",
-    speciesName: "Dog",
-    category: "2",
-  },
-];
+import Species from "../models/species.js";
 
 export default {
   Animal: {
@@ -22,9 +9,9 @@ export default {
   },
   Mutation: {
     addSpecies: (parent, args) => {
-      console.log(args);
-      const newSpecie = new Species(args);
-      return newSpecie.save();
+      console.log("addSpecies, Species REsolver", args);
+      const newSpecies = new Species(args);
+      return newSpecies.save();
     },
   },
 };

@@ -1,46 +1,27 @@
-import Animals from "../model/animal.js";
-import pkg from "apollo-server-express";
-const { AuthenticationError } = pkg;
-
-const animalData = [
-  {
-    id: "1",
-    animalName: "Frank",
-    species: "1",
-  },
-  {
-    id: "2",
-    animalName: "DADA",
-    species: "2",
-  },
-];
+import Animal from "../models/animal.js";
 
 export default {
   Query: {
     animals: (parent, args) => {
-      return Animals.find();
+      return Animal.find();
     },
     animal: (parent, args) => {
-      return Animals.findById(args.id);
+      return Animal.findById(args.id);
     },
   },
   Mutation: {
-    addAnimal: (parent, args, { user }) => {
-      console.log("animal REsolver", args, user);
-      if (!user) {
-        return new AuthenticationError("You are not authenticated!");
-      }
-      const newAnimal = new Animals(args);
-      return newAnimal.save();
+    addAnimal: (parent, args) => {
+      console.log("addAnimal, Animla Resolver", args);
+      const newanimal = new Animal(args);
+      return newanimal.save();
     },
-
     modifyAnimal: (parent, args) => {
-      console.log("Modify", args);
+      console.log("Modify animal REsolver", args);
       const data = {
         animalName: args.animalName,
         species: args.species,
       };
-      return Animals.findByIdAndUpdate(args.id, data);
+      return Animal.findByIdAndUpdate(args.id, data);
     },
   },
 };
